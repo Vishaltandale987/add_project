@@ -51,8 +51,14 @@ ProductRouter.delete("/delete/:id", async (req, res) => {
 ProductRouter.patch("/update/:id", async (req, res) => {
   const id = req.params.id
   const data = req.body
-  await ProductModel.findByIdAndUpdate({ _id: id }, data)
-  res.send({ massege: `Product ${id} has been update.` });
+  try {
+    await ProductModel.findByIdAndUpdate({ _id: id }, data)
+    res.send({ massege: `Product ${id} has been update.` });
+  } catch (error) {
+    res.send({ massege: `Product not able to update.`, error });
+    
+  }
+
 
 });
 
