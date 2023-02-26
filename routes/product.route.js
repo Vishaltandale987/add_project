@@ -202,9 +202,8 @@ ProductRouter.get("/getbyID/:id", async (req,res)=>{
   let {id} = req.params
   console.log(id)
   try{
-    let data = await ProductModel.findOne({id});
-    // let data = await ProductModel.find();
-    // console.log(data,"Hello this is data");
+    let data = await ProductModel.findOne({_id:id});
+ 
     res.send(data)
   }
   catch(err){
