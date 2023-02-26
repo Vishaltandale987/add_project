@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", UserRouter);
 app.use("/products" , ProductRouter);
-app.use(UsreAuthMiddleware)
+// app.use(UsreAuthMiddleware)
 app.use("/admin" , AdminUserRouter );
 app.use("/block" , BlockRouter );
 
