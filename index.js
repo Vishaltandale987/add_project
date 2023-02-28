@@ -3,6 +3,7 @@ const { connection } = require("./config/db")
 const cors=require("cors")
 const { UserRouter } = require("./routes/user.route")
 const { ProductRouter } = require("./routes/product.route")
+const { CartRouter } = require("./routes/Cart.route")
 const { AdminUserRouter } = require("./routes/Adminuser.route")
 const { UsreAuthMiddleware } = require("./middlewares/authentication.middleware")
 const { BlockRouter } = require("./routes/Block.route")
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", UserRouter);
+app.use("/cart", CartRouter);
 app.use("/products" , ProductRouter);
 // app.use(UsreAuthMiddleware)
 app.use("/admin" , AdminUserRouter );
