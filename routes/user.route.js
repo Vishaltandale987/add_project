@@ -23,7 +23,7 @@ UserRouter.post("/register", async (req, res) => {
   let logindata = await UserModel.find({ email: email })
   try {
     if (logindata.length !== 0) {
-     return res.send({ massege: " Register Already Exist" });
+     return res.send({ massege: "User Already Exist" });
     }
 
     bcrypt.hash(password, 5, async (err, hash) => {
