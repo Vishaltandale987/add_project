@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { CartModel } = require("../model/cart.model");
+require("dotenv").config();
 
 const CartRouter = express.Router();
 
