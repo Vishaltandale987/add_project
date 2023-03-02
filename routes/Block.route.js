@@ -6,9 +6,6 @@ const { BlockModel } = require("../model/block.model");
 const BlockRouter = express.Router();
 
 //all users
-
-
-
 BlockRouter.get("/", async (req, res) => {
 
   const notes = await BlockModel.find()
@@ -28,27 +25,15 @@ BlockRouter.post("/register", async (req, res) => {
       await user.save();
       res.send({ massege: "New user has been ban" });
     }
-
-
-
-
-
   } catch (error) {
     res.send({ massege: "something went wrong" });
   }
-
-
 });
-
-
-
-
 
 BlockRouter.delete("/delete/:id", async (req, res) => {
   const id = req.params.id
   await BlockModel.findByIdAndDelete({ _id: id })
   res.send({ massege: `Product ${id} has been been remove from ban list.` });
-
 });
 
 module.exports = {
