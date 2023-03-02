@@ -7,8 +7,6 @@ const UserRouter = express.Router();
 
 //all users
 
-
-
 UserRouter.get("/", async (req, res) => {
 
   const notes = await UserModel.find()
@@ -38,19 +36,12 @@ UserRouter.post("/register", async (req, res) => {
         res.send({ massege: "New user register" });
       }
     });
-
-
-
-
   } catch (error) {
     res.send({ massege: "something went wrong" });
   }
-
-
 });
 
 //login
-
 
 UserRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -78,7 +69,6 @@ UserRouter.delete("/delete/:id", async (req, res) => {
   const id = req.params.id
   await UserModel.findByIdAndDelete({_id:id})
   res.send({ massege: `Product ${id} has been deleted` });
-
 });
 
 module.exports = {
