@@ -9,11 +9,11 @@ const UsreAuthMiddleware = (req, res, next) => {
         req.body.user=decoded.userID
         next();
       } else {
-        res.send({ massege: "Please Login hello","error":err });
+        res.send({ massege: "Please Login","error":err });
       }
     });
   } else {
-    res.send({ massege: "Please Login Hii" });
+    res.send({ massege: "Please Login" });
   }
 };
 
