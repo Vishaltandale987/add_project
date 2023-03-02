@@ -2,9 +2,8 @@ const mongoose = require("mongoose")
 
 const userSchema = mongoose.Schema({
     name:String,
-    pass:String,
+    password:String,
     email:String,
-    avatar:String,
     age:Number,
     number:Number,
     gender: "male" | "female" | "other"
@@ -19,7 +18,7 @@ module.exports={
 }
 
     // "name":"",
-    // "pass":"",
+    // "password":"",
     // "email":"",
     // "avtar":"",
     // "age":"",

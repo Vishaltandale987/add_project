@@ -7,12 +7,13 @@ const cartSchema = mongoose.Schema({
     brand: String,
     category: String,
     sub_category: String,
-    images: Array
+    images: Array,
+    user:String
 },{
     versionKey:false
 })
 
-const CartModel=mongoose.model("Cart",cartSchema)
+const CartModel=mongoose.model("cart",cartSchema)
 module.exports={
     CartModel
 }

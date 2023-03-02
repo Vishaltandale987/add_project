@@ -18,24 +18,22 @@ UserRouter.get("/", async (req, res) => {
 //register
 
 UserRouter.post("/register", async (req, res) => {
-  const { name, email, pass, avatar, age, gender } = req.body;
+  const { name, email, password, avatar, age, gender } = req.body;
+
   let logindata = await UserModel.find({ email: email })
   try {
     if (logindata.length !== 0) {
      return res.send({ massege: " Register Already Exist" });
     }
 
-
-
-
-    bcrypt.hash(pass, 5, async (err, hash) => {
+    bcrypt.hash(password, 5, async (err, hash) => {
       // Store hash in your password DB.
       if (err) {
         res.send({ massege: "something went wrong", error: err.message });
       }
 
       else {
-        const user = new UserModel({ name, email, pass: hash, avatar, age, gender });
+        const user = new UserModel({ name, email, password: hash, avatar, age, gender });
         await user.save();
         res.send({ massege: "New user register" });
       }
@@ -55,14 +53,13 @@ UserRouter.post("/register", async (req, res) => {
 
 
 UserRouter.post("/login", async (req, res) => {
-  const { email, pass } = req.body;
+  const { email, password } = req.body;
   try {
     const user = await UserModel.find({ email });
     if (user.length > 0) {
-      bcrypt.compare(pass, user[0].pass, (err, result) => {
-        // result == true
+      bcrypt.compare(password, user[0].password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ userID: user[0]._id }, "masai");
+          const token = jwt.sign({ userID: user[0]._id }, process.env.key);
 
           res.send({ massege: "login successful", token: token });
         } else {
@@ -73,7 +70,7 @@ UserRouter.post("/login", async (req, res) => {
       res.send({ massege: "wrong coredentials" });
     }
   } catch (error) {
-    res.send({ massege: "something went wrong" });
+    res.send({ massege: "something went wrong"});
   }
 });
 
