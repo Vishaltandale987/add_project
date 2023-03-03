@@ -10,6 +10,7 @@ CartRouter.get("/",async(req,res)=>{
     // console.log(req, "am")
     const token = req.headers.authorization;
     const {userID} = jwt.verify(token,"masai");
+    
     try {
         const product=await CartModel.find({user:userID})
         // console.log(product)
