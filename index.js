@@ -7,6 +7,7 @@ const { CartRouter } = require("./routes/Cart.route")
 const { AdminUserRouter } = require("./routes/Adminuser.route")
 const { UsreAuthMiddleware } = require("./middlewares/authentication.middleware")
 const { BlockRouter } = require("./routes/Block.route")
+const { ItemIsTrueMiddleware } = require("./middlewares/ItemIsTrue.middleware")
 require("dotenv").config()
 
 
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
 app.use("/users", UserRouter);
 app.use("/products" , ProductRouter);
 app.use(UsreAuthMiddleware)
-app.use("/cart", CartRouter);
+app.use("/cart", ItemIsTrueMiddleware, CartRouter);
 app.use("/admin" , AdminUserRouter );
 app.use("/block" , BlockRouter );
 
